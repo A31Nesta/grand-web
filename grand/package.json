@@ -1,0 +1,15 @@
+{
+  "name": "grand",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "grand_bg.wasm",
+    "grand.js",
+    "grand.d.ts"
+  ],
+  "main": "grand.js",
+  "types": "grand.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

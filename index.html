@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand</title>
+    <script type="module" src="scripts/main.js"></script>
+    
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/expr-input.css">
+</head>
+<body>
+    <h1>Glorified <span class="mono">rand()</span> demonstration website</h1>
+    <main>
+        <form class="expression-container" id="input-form">
+            <h2 class="expression-label">Expression:</h2>
+            <div class="input-run-flex">
+                <input type="text" id="expression" class="expression-input">
+                <button type="submit" class="expression-run">⏎</button>
+            </div>
+        </form>
+
+        <div id="output" class="result-container">
+            <h2 class="expression-label">Results:</h2>
+            <pre id="results"></pre>
+        </div>
+    </main>
+</body>
+</html>

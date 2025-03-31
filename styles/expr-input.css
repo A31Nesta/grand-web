@@ -1,0 +1,88 @@
+.expression-container, .result-container {
+    position: relative;
+    background-color: black;
+    padding: 2rem;
+    border-radius: 3rem;
+    overflow: visible;
+
+    width: calc(100% - 10px);
+    max-width: 512px;
+    margin: 2rem auto;
+}
+.expression-container::before {
+    position: absolute;
+    content: "";
+    z-index: -1;
+    top: -5px;
+    left: -5px;
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+    border-radius: 3.4rem;
+
+    background: radial-gradient(ellipse at top left, #49faa1, #530870);
+}
+.result-container::before {
+    position: absolute;
+    content: "";
+    z-index: -1;
+    top: -5px;
+    left: -5px;
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+    border-radius: 3.4rem;
+
+    background: radial-gradient(ellipse at bottom right, #db9160, #b2c0ec);
+}
+.expression-container::before {
+    position: absolute;
+    content: "";
+    z-index: -1;
+    top: -5px;
+    left: -5px;
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+    border-radius: 3.4rem;
+
+    background: radial-gradient(ellipse at top left, #bbe2ce, #d8c27c);
+}
+
+
+.expression-label {
+    margin-top: 0;
+    text-align: center;
+
+    color: #e7d0ec;
+}
+
+.input-run-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+input.expression-input {
+    flex-grow: 1;
+    padding: 1rem;
+    height: 3rem;
+    font-size: 1.25rem;
+    font-family: 'Courier New', Courier, monospace;
+
+    border-radius: 20px 0 0 20px;
+    border: 2px wheat solid;
+
+    background-color: #211524;
+    color: wheat;
+}
+
+.expression-run {
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    font-size: 1.5rem;
+
+    border-radius: 0 20px 20px 0;
+    border: 2px wheat solid;
+
+    background-color: #1a0944;
+    color: wheat;
+}
