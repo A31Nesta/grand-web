@@ -3,7 +3,7 @@ import initSync, { expr } from "../grand/grand.js";
 let wasmPromise = initSync();
 
 let loadedExpression = "";
-let loadedCompiledExpression = {};
+let loadedCompiledExpression = null;
 
 window.addEventListener("DOMContentLoaded", async ()=>{
     const inputForm = document.getElementById("input-form");
@@ -24,8 +24,15 @@ window.addEventListener("DOMContentLoaded", async ()=>{
 
         // Check if we have to recompile the expression
         if (inputExpr != loadedExpression) {
+            // delete previously compiled GrandEx
+            if (loadedCompiledExpression) {
+                loadedCompiledExpression.free();
+                console.log("Freed previous GrandEx object");
+            }
+
             loadedCompiledExpression = expr(inputExpr);
             loadedExpression = inputExpr;
+            console.log("Compiled new GrandEx object");
         }
 
         // Run and put into output element
