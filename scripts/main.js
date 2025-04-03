@@ -1,4 +1,4 @@
-import initSync, { expr } from "../grand/grand.js";
+import initSync, { compile } from "../grand/grand.js";
 
 let wasmPromise = initSync();
 
@@ -30,13 +30,13 @@ window.addEventListener("DOMContentLoaded", async ()=>{
                 console.log("Freed previous GrandEx object");
             }
 
-            loadedCompiledExpression = expr(inputExpr);
+            loadedCompiledExpression = compile(inputExpr);
             loadedExpression = inputExpr;
             console.log("Compiled new GrandEx object");
         }
 
         // Run and put into output element
-        let number = loadedCompiledExpression.eval();
+        let number = loadedCompiledExpression.generate();
         output.textContent = number;
     }
 })

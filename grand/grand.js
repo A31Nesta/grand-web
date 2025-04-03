@@ -94,13 +94,17 @@ function passStringToWasm0(arg, malloc, realloc) {
     return ptr;
 }
 /**
+ * Designed for the web, this function returns a wrapper
+ * to the underlying Gex object (GrandEx).
+ * This wrapper converts generated Decimal numbers into
+ * f64. These numbers can be printed without losing precision
  * @param {string} expression
  * @returns {GrandEx}
  */
-export function expr(expression) {
+export function compile(expression) {
     const ptr0 = passStringToWasm0(expression, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
     const len0 = WASM_VECTOR_LEN;
-    const ret = wasm.expr(ptr0, len0);
+    const ret = wasm.compile(ptr0, len0);
     return GrandEx.__wrap(ret);
 }
 
@@ -130,7 +134,10 @@ export class Gex {
 const GrandExFinalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }
     : new FinalizationRegistry(ptr => wasm.__wbg_grandex_free(ptr >>> 0, 1));
-
+/**
+ * Wrapper for Gex that returns a f64 instead of a Decimal when calling generate().
+ * Made primarily for WASM
+ */
 export class GrandEx {
 
     static __wrap(ptr) {
@@ -153,10 +160,12 @@ export class GrandEx {
         wasm.__wbg_grandex_free(ptr, 0);
     }
     /**
+     * Generates a random number and returns it as a float without
+     * losing its precision.
      * @returns {number}
      */
-    eval() {
-        const ret = wasm.grandex_eval(this.__wbg_ptr);
+    generate() {
+        const ret = wasm.grandex_generate(this.__wbg_ptr);
         return ret;
     }
 }

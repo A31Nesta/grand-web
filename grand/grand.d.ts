@@ -1,6 +1,12 @@
 /* tslint:disable */
 /* eslint-disable */
-export function expr(expression: string): GrandEx;
+/**
+ * Designed for the web, this function returns a wrapper
+ * to the underlying Gex object (GrandEx).
+ * This wrapper converts generated Decimal numbers into
+ * f64. These numbers can be printed without losing precision
+ */
+export function compile(expression: string): GrandEx;
 /**
  * A Grand Expression. It is a recursive structure that evaluates a range and modifiers (constraints)
  * or a selection from a list.
@@ -10,10 +16,18 @@ export class Gex {
   private constructor();
   free(): void;
 }
+/**
+ * Wrapper for Gex that returns a f64 instead of a Decimal when calling generate().  
+ * Made primarily for WASM
+ */
 export class GrandEx {
   private constructor();
   free(): void;
-  eval(): number;
+  /**
+   * Generates a random number and returns it as a float without
+   * losing its precision.
+   */
+  generate(): number;
 }
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
@@ -21,8 +35,8 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
   readonly __wbg_grandex_free: (a: number, b: number) => void;
-  readonly grandex_eval: (a: number) => number;
-  readonly expr: (a: number, b: number) => number;
+  readonly grandex_generate: (a: number) => number;
+  readonly compile: (a: number, b: number) => number;
   readonly __wbg_gex_free: (a: number, b: number) => void;
   readonly __wbindgen_exn_store: (a: number) => void;
   readonly __externref_table_alloc: () => number;
