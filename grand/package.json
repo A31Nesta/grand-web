@@ -1,7 +1,13 @@
 {
   "name": "grand",
   "type": "module",
-  "version": "0.1.0",
+  "description": "JIT-compiled language for constraint-based Random Number Generation",
+  "version": "0.2.0",
+  "license": "MIT or Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/A31Nesta/grand"
+  },
   "files": [
     "grand_bg.wasm",
     "grand.js",
